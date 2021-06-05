@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css?family=Poppins:100,100italic,200,200italic,300,300italic,regular,italic,500,500italic,600,600italic,700,700italic,800,800italic,900,900italic" rel="stylesheet" />
+    <title>Computer Science</title>
+    <link rel="stylesheet" href="http://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" > 
+       <link rel="stylesheet" href="style.css">
+
+</head>
+<body>
+    <section class="sub-header">
+        <nav>
+            <a href="index.html"><img src="eduford_img/logo.png"></a>
+            <div class="nav-links" id="nav-links">
+                <i class="fa fa-times" onclick="hide()"></i>
+
+                <ul>
+                    <li><a href="">Home</a></li>
+                    <li><a href="">About</a></li>
+                    <li><a href="">Cource</a></li>
+                    <li><a href="">Blog</a></li>
+                    <li><a href="">Contant</a></li>
+                </ul>
+            </div>
+            <li class="fa fa-bars" id="bars" onclick="show()"></li>
+        </nav>
+      <h1>About us</h1>
+    </section>
+    <section class="about-us">
+        <div class="row">
+            <div class="about-col">
+                <h1>Computer Science and Information Technology</h1>
+                <p>The College of Computer Science and Mathematics at the University of Al-Qadisiyah was established on May 26, 2008, in the Departments of Mathematics and Computer Science. Its creation was one of the fruits of a specialized scientific symposium to research ways and requirements for advancing the reality of mathematics, which was held at the Faculty of Science - University of Qadisiyah for the period December 20-21, 2006. The day we were assigned the duties of the dean of the college. Since its establishment, the college has been consolidating the educational environment that will achieve efficient performance and quality in higher education and scientific research, using advanced techniques that ensure the desired advancement in the efficiency of the faculty, which will inevitably reflect on the level of college graduates. As a result, and despite the college’s newness, it ranked first in the university performance evaluation over the corresponding colleges in Iraqi universities for the academic year 2009-2010, in addition to the Medal of Honor that our college received for obtaining the first rank in academic integrity and honesty, as the college was honored by The Ministry of Higher Education and Scientific Research, on the occasion of Integrity Day, December 9, 2010. Since its establishment, it has sought to host scientific events that would raise the level of the college to be a prominent scientific edifice comparable to the corresponding colleges in international universities.
+              </p>
+          </div>
+            <div class="about-col">
+                <img src="eduford_img/about.jpg">
+            </div>
+        </div>
+  </section>
+        <!-- footer -->
+        <section class="footer">
+            <h4>About Us</h4>
+            <p>Computer Science and Information Technology</p>
+        
+            <div class="icons">
+                <i class="fa fa-facebook"></i>
+                <i class="fa fa-instagram"></i>
+                <i class="fa fa-twitter"></i>
+                <i class="fa fa-linkedin"></i>
+                <i class="fa fa-whatsapp"></i>
+
+            </div>
+             <p>made with <i class="fa fa-heart-o"></i> by Ahmed Shrba
+             </p>
+        </section>
+</body>
+<script>
+    function show(){
+        nav=document.getElementById('nav-links');
+        nav.style.right="0px";
+    }
+    function hide(){
+        nav=document.getElementById('nav-links');
+        nav.style.right="-200px";
+    }
+</script>
+</html>

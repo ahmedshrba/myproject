@@ -1,0 +1,44 @@
+body{
+    background-color: #2f4050;
+}
+.col-sm-10{
+    background-color: #ffffff;
+}
+#panel-menu a{
+   color: #9fb1c2;
+}
+#panel-menu .active a{
+    color: #ffffff;
+    font-weight: bold;
+    background-color: #27AAE1;
+}
+#panel-menu a:hover{
+
+    color: #ffffff;
+    background-color:#1ab394;
+    font-weight: bold;
+    display: block;
+
+}
+.footer{
+    width: 100%;
+    text-align: center;
+    padding: 30px 0;
+     background-color: #ffffff;
+}
+.footer:h4{
+    margin-bottom: 25px;
+    margin-top: 20px;
+    font-weight: 600;
+    
+}
+
+.icons .fa{
+    color: #f44336;
+    margin: 0 13px;
+    cursor: pointer;
+    padding: 18px 0;
+}
+.fa-heart-o{
+    color: #f44336;
+}
