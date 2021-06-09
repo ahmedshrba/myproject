@@ -1,0 +1,58 @@
+body{
+    background-image: linear-gradient(rgba(4,9,30,0.7),rgba(4,9,30,0.7)),url('eduford_img/banner.png');
+    background-size: cover;
+}
+.maindiv{
+    text-align: center;
+    align-items: center;
+    color: #fff;
+}
+.error{
+    padding: 10px;
+    font-size: 30px; 
+    text-align: center; 
+    color:  red;
+    background-color: #fff;
+}
+
+.group{
+    padding: 20px;
+    display: flex;
+    justify-content: center;
+
+    
+}
+.group input,select{
+    border: none;
+    
+    border-bottom:1px dotted wheat;
+    border-bottom-left-radius:30%;
+    background:transparent;
+     flex-basis: 20%;
+     margin-left: 5%;
+     color: white;
+     font-size: 20px;
+}
+.group input,select:focus{
+    outline: none;
+    
+}
+
+.group label:hover{
+    color: wheat;
+}
+select option{
+  color:black
+}
+
+select{
+    
+    text-align-last:center;
+    
+
+}
+.btn {
+    background-color: green;
+    color: white;
+    width:50%;
+}

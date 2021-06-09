@@ -1,7 +1,7 @@
-<?php 
-   include('connect.php');
-   include('test.php');
-?>
+<?php
+session_start();
+
+ ?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -12,13 +12,13 @@
     <link href="https://fonts.googleapis.com/css?family=Poppins:100,100italic,200,200italic,300,300italic,regular,italic,500,500italic,600,600italic,700,700italic,800,800italic,900,900italic" rel="stylesheet" />
     <title>Computer Science</title>
     <link rel="stylesheet" href="http://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" > 
-       <link rel="stylesheet" href="style.css">
+       <link rel="stylesheet" href="asset/style.css">
 
 </head>
 <body>
     <section class="header">
         <nav>
-            <a href="index.html"><img src="eduford_img/logo.png"></a>
+            <a href="index.html"><img src="asset/eduford_img/logo.png"></a>
             <div class="nav-links" id="nav-links">
                 <i class="fa fa-times" onclick="hide()"></i>
 
@@ -30,16 +30,16 @@
                     <li><a href="#contant">Contant </a></li>
                     <li>
                     <div class="dropdown">
-                    <?php if(!isset($_SESSION['name'])){
+                    <?php if(!isset($_SESSION['fisrt_name'])){
                         ?><?php echo '<button class="dropbtn"><a href="login.php">login</a></button>';}
                         
                         else{
 
-                            ?><?php echo '<button class="dropbtn"><a href="kkk.php">'.$_SESSION['name'].'</a></button>';}
+                            ?><?php echo '<button class="dropbtn"><a href="kkk.php">'.$_SESSION['fisrt_name'].'</a></button>';}
                         
                         
                         ?>
-                    <?php if(isset($_SESSION['name'])){
+                    <?php if(isset($_SESSION['fisrt_name'])){
                         ?>
                         
                         <?php echo'
@@ -129,21 +129,21 @@
         
         <div class="row">
             <div class="news-col">
-                <img src="eduford_img/london.png" >
+                <img src="asset/eduford_img/london.png" >
                 <div class="layer">
                     <h3><a href=" " class="hero-btn read-btn news-btn">read</a></h3>
                 </div>
                 <p>The launch of the activities of the third international scientific conference of the department</p>
             </div>
             <div class="news-col">
-                <img src="eduford_img/newyork.png" >
+                <img src="asset/eduford_img/newyork.png" >
                 <div class="layer">
                     <h3><a href=" " class="hero-btn read-btn news-btn">read</a></h3>
                 </div>
                 <p>A training course for teachers and graduate students in the Department of Computer Science</p>
             </div>
             <div class="news-col">
-                <img src="eduford_img/washington.png" >
+                <img src="asset/eduford_img/washington.png" >
                 <div class="layer">
                     <h3><a href=" " class="hero-btn read-btn news-btn">read</a></h3>
                     
@@ -164,19 +164,19 @@
    
             <div class="row">
                 <div class="services-col">
-                    <img src="eduford_img/library.png" alt="">
+                    <img src="asset/eduford_img/library.png" alt="">
                     <h3>the Library</h3>
                     <p>A smart electronic library that facilitates the student to access many sources </p>
 
                 </div>
                 <div class="services-col">
-                    <img src="eduford_img/cafeteria.png" alt="">
+                    <img src="asset/eduford_img/cafeteria.png" alt="">
                     <h3>Lesson discussion platform</h3>
                     <p>Where you can ask questions and discuss lectures with professors and students</p>
 
                 </div>
                 <div class="services-col">
-                    <img src="eduford_img/projects-logo.jpg" alt="">
+                    <img src="asset/eduford_img/projects-logo.jpg" alt="">
                     <h3>Graduation Projects</h3>
                     <p>Students' graduation projects in previous years
                         Helping the student to find creative ideas</p>
@@ -190,7 +190,7 @@
    
              <div class="row">
                  <div class="OutStanding-students-col">
-                     <img src="eduford_img/user1.jpg">
+                     <img src="asset/eduford_img/user1.jpg">
                      <div>
                         <p>Department of Computer Science average 70%<br>The best in programming </p>
                         <h3>Sara Mohmmed</h3>
@@ -199,7 +199,7 @@
                     </div>
                  </div>
                  <div class="OutStanding-students-col">
-                    <img src="eduford_img/user2.jpg">
+                    <img src="asset/eduford_img/user2.jpg">
                     <div>
                        <p>Multimedia department, average 75%<br>the best in artificial intelligence</p>
                        <h3>Ahmed kreem</h3>
@@ -246,4 +246,4 @@
         nav.style.right="-200px";
     }
 </script>
-</html>
+</html> 

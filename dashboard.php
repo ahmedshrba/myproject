@@ -13,7 +13,7 @@
 
 <!-- Latest compiled and minified JavaScript -->
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
-   <link rel="stylesheet" href="dashboardstyle.css">
+   <link rel="stylesheet" href="asset/dashboardstyle.css">
     <title>dashbord</title>
 </head>
 <body>
@@ -63,7 +63,7 @@
                         </a>
                     </li>
                      <li>
-                         <a href="">
+                         <a href="dashboard/addnewaccount.php">
                              
                              <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
                              
