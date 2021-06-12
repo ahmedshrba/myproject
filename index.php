@@ -1,7 +1,11 @@
 <?php
 session_start();
+include('include/connect.php');
+if(isset($_GET['error'])){
+    echo "<h1>" .$_GET['error']."</h1>";
+}
 
- ?>
+?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -30,25 +34,50 @@ session_start();
                     <li><a href="#contant">Contant </a></li>
                     <li>
                     <div class="dropdown">
-                    <?php if(!isset($_SESSION['fisrt_name'])){
-                        ?><?php echo '<button class="dropbtn"><a href="login.php">login</a></button>';}
+                    <?php if(!isset($_SESSION['first_name'])){
+                        ?><?php echo '<button class="dropbtn"><a href="account/login.php">login</a></button>';}
                         
                         else{
 
-                            ?><?php echo '<button class="dropbtn"><a href="kkk.php">'.$_SESSION['fisrt_name'].'</a></button>';}
+                            ?><?php echo '<button class="dropbtn"><a href="kkk.php">'.$_SESSION['first_name'].'</a></button>';}
                         
                         
                         ?>
-                    <?php if(isset($_SESSION['fisrt_name'])){
+                    <?php if(isset($_SESSION['first_name'])){
                         ?>
                         
-                        <?php echo'
-                        <div class="dropdown-content">
-                          <a href="#">Link 1</a>
-                          <a href="#">Link 2</a>
-                          <a href="logout.php">logout</a>
+                        <?php echo"
+                        <div class='dropdown-content'>
+                          <a href='#'>";
+                          $job=$_SESSION['job'];
+                           if($job=='HOdepartment' ||$job=='AHDepartment' ){
+                           
+                            $department=$_SESSION['department'];
+                            $sql="SELECT *FROM vacation WHERE department='$department' and job!='SADean'and $job='none'";
+                            $sql=$db->prepare($sql);
+                            $sql->execute();
+                            $vacation=$sql->rowCount();
+                            
+                               echo "vacation <span id='vacation'>". $vacation;
+                           } 
+                           elseif($job=='SADean' ||$job=='Dean' ){
+                           
+                            $department=$_SESSION['department'];
+                            $sql="SELECT *FROM vacation WHERE  $job='none'";
+                            $sql=$db->prepare($sql);
+                            $sql->execute();
+                            $vacation=$sql->rowCount();
+                               echo "vacation <span id='vacation'>". $vacation;
+                           } 
+                           else {
+                               echo "Lectures";
+                           }
+                           
+                          echo"</a>
+                          <a href='#'>Link 2</a>
+                          <a href='account/logout.php'>logout</a>
                         </div>
-                      </div>';
+                      </div>";
                     }?>
                       </li>
                 </ul>

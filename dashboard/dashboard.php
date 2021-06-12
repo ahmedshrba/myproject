@@ -1,4 +1,7 @@
-<!DOCTYPE html>
+<?php 
+    session_start();
+   if(isset($_SESSION['first_name']) and $_SESSION['job']!='student'){?>
+   <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -114,3 +117,10 @@
         </section>
 </body>
 </html>
+<?php }
+
+ else{
+     header('location:../index.php');
+ }
+
+?>

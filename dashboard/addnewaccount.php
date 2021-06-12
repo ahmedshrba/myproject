@@ -106,7 +106,7 @@ if(isset($_POST['submit'])){
                 $insert->execute();
 
 
-                header('location:../dashboard.php');
+                header('location:../dashboard/dashboard.php');
 
 
              } // end of insert blok
@@ -125,9 +125,10 @@ if(isset($_POST['submit'])){
 
 <?php
 
+if(isset($_SESSION['first_name']) and $_SESSION['job']!='student' and $_SESSION['job']!='Teacher'){?>
 
 
-?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -213,3 +214,10 @@ if(isset($_POST['submit'])){
     }
 
 </script>
+<?php }
+
+else{
+    header('location:../index.php');
+}
+
+?>

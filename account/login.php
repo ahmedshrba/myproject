@@ -1,6 +1,6 @@
 <?php
 
-include("include/connect.php");
+include("../include/connect.php");
 
 
 if(isset($_POST['submit'])){
@@ -17,7 +17,7 @@ if(isset($_POST['submit'])){
     $password=preg_replace('#<script(.*?)>(.*?)</script>#is', '',$password);
     $password=preg_replace("~'~", '',$password);
       // remove tags and '
-
+    $password=md5($password);
 $login="SELECT * FROM accounts WHERE user_name='$user_name' and password='$password'";
 
     $login=$db->prepare($login);
@@ -28,9 +28,11 @@ $login="SELECT * FROM accounts WHERE user_name='$user_name' and password='$passw
     $account=$login->fetch(PDO::FETCH_ASSOC);
     session_start();
      
-    $_SESSION['fisrt_name']=$account['first_name'];
-
-     header('location:index.php');
+    $_SESSION['first_name']=$account['first_name'];
+     $_SESSION['department']=$account['department'];
+     $_SESSION['last_name']=$account['last_name'];
+     $_SESSION['job']=$account['job_title'];
+     header('location:../index.php');
 
 
        }
