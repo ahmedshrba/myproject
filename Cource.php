@@ -1,4 +1,13 @@
 <!DOCTYPE html>
+<?php 
+ include('include/connect.php');
+
+ $select="SELECT *FROM news";
+ $select=$db->prepare($select);
+ $select->execute();
+ $select=$select->fetchAll();
+  
+?>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -69,90 +78,31 @@
     </section>  <!--articles-->
      <!--services-->
      <section class="services">
+      
         <h1>Our services</h1>
         <p>Wikipedia is a free online encyclopedia, created and edited by volunteers around the world </p>
 
-        <div class="row row-fac">
+      
+        <div class="row row-fac"> 
+            <?php    
+         
+         foreach($select as $row){?>
+          
             <div class="services-col">
-                <img src="eduford_img/library.png" alt="">
-                <h3>Our Class Library</h3>
-                <p>Wikipedia is a free online encyclopedia, created and edited by volunteers around the world </p>
+            
+             <img src="<?php echo'asset/eduford_img/'. $row['image'];?>">
+             <h3><?php echo $row['title'];?></h3>
+             <p><?php echo substr($row['content'], 0, 40).".....";?></p>
 
-            </div>
-            <div class="services-col">
-                <img src="eduford_img/cafeteria.png" alt="">
-                <h3>Our Class Library</h3>
-                <p>Wikipedia is a free online encyclopedia, created and edited by volunteers around the world </p>
-
-            </div>
-            <div class="services-col">
-                <img src="eduford_img/basketball.png" alt="">
-                <h3>Our Class Library</h3>
-                <p>Wikipedia is a free online encyclopedia, created and edited by volunteers around the world </p>
-
-            </div>
-            <div class="services-col">
-                <img src="eduford_img/basketball.png" alt="">
-                <h3>Our Class Library</h3>
-                <p>Wikipedia is a free online encyclopedia, created and edited by volunteers around the world </p>
-
-            </div>
-            <div class="services-col">
-                <img src="eduford_img/basketball.png" alt="">
-                <h3>Our Class Library</h3>
-                <p>Wikipedia is a free online encyclopedia, created and edited by volunteers around the world </p>
-
-            </div>
-            <div class="services-col">
-                <img src="eduford_img/basketball.png" alt="">
-                <h3>Our Class Library</h3>
-                <p>Wikipedia is a free online encyclopedia, created and edited by volunteers around the world </p>
-
-            </div>
-            <div class="services-col">
-                <img src="eduford_img/basketball.png" alt="">
-                <h3>Our Class Library</h3>
-                <p>Wikipedia is a free online encyclopedia, created and edited by volunteers around the world </p>
-
-            </div>
-            <div class="services-col">
-                <img src="eduford_img/library.png" alt="">
-                <h3>Our Class Library</h3>
-                <p>Wikipedia is a free online encyclopedia, created and edited by volunteers around the world </p>
-
-            </div>
-            <div class="services-col">
-                <img src="eduford_img/cafeteria.png" alt="">
-                <h3>Our Class Library</h3>
-                <p>Wikipedia is a free online encyclopedia, created and edited by volunteers around the world </p>
-
-            </div>
-            <div class="services-col">
-                <img src="eduford_img/basketball.png" alt="">
-                <h3>Our Class Library</h3>
-                <p>Wikipedia is a free online encyclopedia, created and edited by volunteers around the world </p>
-
-            </div>
-            <div class="services-col">
-                <img src="eduford_img/basketball.png" alt="">
-                <h3>Our Class Library</h3>
-                <p>Wikipedia is a free online encyclopedia, created and edited by volunteers around the world </p>
-
-            </div>
-            <div class="services-col">
-                <img src="eduford_img/basketball.png" alt="">
-                <h3>Our Class Library</h3>
-                <p>Wikipedia is a free online encyclopedia, created and edited by volunteers around the world </p>
-
-            </div>
-            <div class="services-col">
-                <img src="eduford_img/basketball.png" alt="">
-                <h3>Our Class Library</h3>
-                <p>Wikipedia is a free online encyclopedia, created and edited by volunteers around the world </p>
-
-            </div>
+       
+       
+    
+            
+          
         
        
+        </div>
+        <?php  }   ?>
         </div>
     </section>
  
