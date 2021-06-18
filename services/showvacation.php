@@ -9,6 +9,18 @@ include('../include/connect.php');
        $sql1=$db->prepare($sql1);
        $sql1->execute();
 
+      
+       if($job=='SADean'){
+         
+         $email="SELECT *FROM vacation WHERE id=$id";
+         $email=$db->prepare($email);
+         $email->execute();
+         $email=$email->fetch(pdo::FETCH_ASSOC);
+          $name="Hellow ".$email['first_name']." ".$email['last_name'] ." your vacation accepts";
+         mail($email['email'],"vacation",$name,"From: a@gmail.com");
+         header('location:showvacation.php');
+
+       }
     }
     if(isset($_GET['refuse'])){
       $id=$_GET['refuse'];
@@ -16,8 +28,11 @@ include('../include/connect.php');
       $sql1= "UPDATE vacation SET $job='refuse' WHERE id=$id";
       $sql1=$db->prepare($sql1);
       $sql1->execute();
+      header('location:showvacation.php');
 
    }
+   
+
 
     if(isset($_SESSION['first_name']))
    {
@@ -25,7 +40,7 @@ include('../include/connect.php');
       if($job=='HOdepartment' ||$job=='AHDepartment'  )
         {
                  $department=$_SESSION['department'];
-                 $sql="SELECT *FROM vacation WHERE department='$department'";
+                 $sql="SELECT *FROM vacation WHERE department='$department' order by id desc";
                  $sql=$db->prepare($sql);
                  $sql->execute();
                  $sql=$sql->fetchAll();
@@ -34,7 +49,7 @@ include('../include/connect.php');
        }
        elseif($job=='Dean' || $job=='SADean')
        {
-         $sql="SELECT *FROM vacation";
+         $sql="SELECT *FROM vacation order by id desc";
          $sql=$db->prepare($sql);
          $sql->execute();
          $sql=$sql->fetchAll();
@@ -87,12 +102,17 @@ include('../include/connect.php');
              <td><?php echo $row['job'];?></td>
               <?php   
                 
-                if($job=='HOdepartment' and $row['job']!='SADean'){
+                if($job=='HOdepartment' and $row['job']!='SADean' and $row['job']!='Dean'){
               ?>
-                 <td><a href="showvacation.php?accept=<?php echo $row['id'];?>" id="accept-btn">accept</a>
-                 <a href="showvacation.php?refuse=<?php echo $row['id'];?>"  id="refuse-btn">refuse</a></td>
+                 <td><a href="showvacation.php?accept=<?php echo $row['id'];?>" id="<?php if($row['hodepartment']=='accept'){echo 'accept';} else {echo 'accept-btn';}?>">accept</a>
+                 <a href="showvacation.php?refuse=<?php echo $row['id'];?>"  id="<?php if($row['hodepartment']=='refuse'){echo 'refuse';} else {echo 'refuse-btn';}?>">refuse</a></td>
                <?php }
-               elseif($job=='HOdepartment' and $row['job']=='SADean'){
+               elseif($job=='HOdepartment' && $row['job']=='SADean' ){
+                  ?>
+                  <td>Not valid</td>
+                   <?php
+               }
+               elseif($row['job']=='Dean'){
                   ?>
                   <td>Not valid</td>
                    <?php
@@ -102,12 +122,12 @@ include('../include/connect.php');
                else {?><td><?php echo $row['hodepartment'];}?></td>
                
                <?php   
-               if($job =='AHDepartment'and $row['job']!='SADean'){
+               if($job =='AHDepartment'and $row['job']!='SADean'  and $row['job']!='Dean'){
                   ?>
-                     <td><a href="showvacation.php?accept=<?php echo $row['id'];?>" id="accept-btn">accept</a>
-                     <a href="showvacation.php?refuse=<?php echo $row['id'];?>"  id="refuse-btn">refuse</a></td>
+                 <td><a href="showvacation.php?accept=<?php echo $row['id'];?>" id="<?php if($row['ahdepartment']=='accept'){echo 'accept';} else {echo 'accept-btn';}?>">accept</a>
+                     <a href="showvacation.php?refuse=<?php echo $row['id'];?>"  id="<?php if($row['ahdepartment']=='refuse'){echo 'refuse';} else {echo 'refuse-btn';}?>">refuse</a></td>
                    <?php }
-                   elseif($job=='AHDepartment' and $row['job']=='SADean'){
+                   elseif(($job=='AHDepartment') && ($row['job']=='SADean' || $row['job']=='Dean')){
                       ?>
                       <td>Not valid</td>
                        <?php
@@ -118,8 +138,8 @@ include('../include/connect.php');
                 if($job=='SADean'){
               ?>
                
-               <td><a href="showvacation.php?accept=<?php echo $row['id'];?>" id="accept-btn">accept</a>
-                 <a href="showvacation.php?refuse=<?php echo $row['id'];?>"  id="refuse-btn">refuse</a></td>
+               <td><a href="showvacation.php?accept=<?php echo $row['id'];?>" id="<?php if($row['SADean']=='accept'){echo 'accept';} else {echo 'accept-btn';}?>">accept</a>
+               <a href="showvacation.php?refuse=<?php echo $row['id'];?>"  id="<?php if($row['SADean']=='refuse'){echo 'refuse';} else {echo 'refuse-btn';}?>">refuse</a></td>
                <?php } else {?><td><?php echo $row['sadean'];}?></td>
                <td><?php echo $row['date'];?></td>
              <td><?php echo $row['duration'];?></td>

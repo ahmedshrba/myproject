@@ -18,7 +18,7 @@ if(isset($_POST['submit'])){
     $password=preg_replace("~'~", '',$password);
       // remove tags and '
     $password=md5($password);
-$login="SELECT * FROM accounts WHERE user_name='$user_name' and password='$password'";
+$login="SELECT * FROM accounts WHERE (user_name='$user_name' or email='$user_name') and password='$password'";
 
     $login=$db->prepare($login);
     $login->execute();
@@ -31,7 +31,11 @@ $login="SELECT * FROM accounts WHERE user_name='$user_name' and password='$passw
     $_SESSION['first_name']=$account['first_name'];
      $_SESSION['department']=$account['department'];
      $_SESSION['last_name']=$account['last_name'];
+     $_SESSION['user_name']=$account['user_name'];
+
      $_SESSION['job']=$account['job_title'];
+     $_SESSION['email']=$account['email'];
+     $_SESSION['id']=$account['id'];
      header('location:../index.php');
 
 
@@ -66,7 +70,7 @@ $login="SELECT * FROM accounts WHERE user_name='$user_name' and password='$passw
 <div class="wrapper">
     <form class="form-signin" method="POST" action="login.php">       
       <h2 class="form-signin-heading">Please login</h2>
-      <input type="text" class="form-control" name="user_name" placeholder="Email Address" required="" autofocus="" />
+      <input type="text" class="form-control" name="user_name" placeholder="Email Address or username" required="" autofocus="" />
       <input type="password" class="form-control" name="password" placeholder="Password" required=""/>      
     
       <input class="btn btn-lg btn-primary btn-block" type="submit" name="submit" value="login">   

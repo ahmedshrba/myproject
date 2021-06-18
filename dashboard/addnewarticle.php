@@ -57,8 +57,8 @@ session_start();
             $title=trim($title);
             $content=trim($content);
             
-           $title=preg_replace('/[^A-Za-z0-9\-]/', '', $title);
-           $content=preg_replace('/[^A-Za-z0-9\-]/', '', $content);
+          //  $title=preg_replace('/[^A-Za-z0-9\-]/', '', $title);
+          //  $content=preg_replace('/[^A-Za-z0-9\-]/', '', $content);
     
     
            $title=strip_tags($title);       

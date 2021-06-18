@@ -4,6 +4,19 @@ include('include/connect.php');
 if(isset($_GET['error'])){
     echo "<h1>" .$_GET['error']."</h1>";
 }
+ $selectarticles="SELECT *FROM articles ORDER BY id DESC  LIMIT 3";
+ $selectarticles=$db->prepare($selectarticles);
+ $selectarticles->execute();
+ $selectarticles=$selectarticles->fetchAll();
+ //fetch articles
+
+
+ $selectnews="SELECT *FROM news ORDER BY id DESC  LIMIT 3";
+ $selectnews=$db->prepare($selectnews);
+ $selectnews->execute();
+ $selectnews=$selectnews->fetchAll();
+//fetch news
+
 
 ?>
 
@@ -27,10 +40,19 @@ if(isset($_GET['error'])){
                 <i class="fa fa-times" onclick="hide()"></i>
 
                 <ul>
-                    <li><a href="">Home</a></li>
-                    <li><a href="about.html">About</a></li>
-                    <li><a href="Cource.html">Cource</a></li>
-                    <li><a href="">Blog</a></li>
+                    <li><a href="index.php">Home</a></li>
+                    <li><a href="about.php">About</a></li>
+                    <li>
+                      <div class="dropdown">
+                      <button class="dropbtn">  services</button>
+                       <div class='dropdown-content'>
+                       <button class="dropbtn"><a href="services/vacation.php">ask vacation</a></button>
+                       <button class="dropbtn"><a href="services/checkconfirmation.php">check confirmation</a></button>
+                       <button class="dropbtn"><a href="services/askconfirmation.php">ask confirmation</a></button>
+                      </div>
+                      </div>
+                    </li>
+                    <li><a href="services/lectures.php">lectures</a></li>
                     <li><a href="#contant">Contant </a></li>
                     <li>
                     <div class="dropdown">
@@ -39,7 +61,7 @@ if(isset($_GET['error'])){
                         
                         else{
 
-                            ?><?php echo '<button class="dropbtn"><a href="kkk.php">'.$_SESSION['first_name'].'</a></button>';}
+                            ?><?php echo "<button class='dropbtn'><a href='account/account.php?id=".$_SESSION['id']."'>".$_SESSION['first_name'].'</a></button>';}
                         
                         
                         ?>
@@ -48,7 +70,7 @@ if(isset($_GET['error'])){
                         
                         <?php echo"
                         <div class='dropdown-content'>
-                          <a href='#'>";
+                         ";
                           $job=$_SESSION['job'];
                            if($job=='HOdepartment' ||$job=='AHDepartment' ){
                            
@@ -58,8 +80,13 @@ if(isset($_GET['error'])){
                             $sql->execute();
                             $vacation=$sql->rowCount();
                             
-                               echo "vacation <span id='vacation'>". $vacation;
-                           } 
+                               echo " <a href='services/showvacation.php'>"."vacation"." <span id='vacation'>". $vacation;
+                               echo "<a href='services/addlectures.php?page=1'>"."new Lectures</a>";
+                               echo "<a href='dashboard/dashboard.php?news=1'>"."dashboard</a>";
+
+                               echo "<a href='account/account.php'>"."account</a>";
+
+                            } 
                            elseif($job=='SADean' ||$job=='Dean' ){
                            
                             $department=$_SESSION['department'];
@@ -67,15 +94,25 @@ if(isset($_GET['error'])){
                             $sql=$db->prepare($sql);
                             $sql->execute();
                             $vacation=$sql->rowCount();
-                               echo "vacation <span id='vacation'>". $vacation;
+                            echo " <a href='services/showvacation.php'>"."vacation"." <span id='vacation'>". $vacation;
+                            echo "<a href='services/addlectures.php?page=1'>"."new Lectures</a>";
+                            echo "<a href='dashboard/dashboard.php?news=1'>"."dashboard</a>";
+
+                            echo "<a href='account/account.php'>"."account</a>";
+
                            } 
-                           else {
-                               echo "Lectures";
+                           elseif($job=='Teacher') {
+                            echo "<a href='services/addlectures.php?page=1'>"."new Lectures</a>";
+                            echo "<a href='account/account.php?page=1'>"."account</a>";
+                            echo "<a href='dashboard/addnewarticle.php'>"."new article</a>";
+
+                        }
+                           else{
+                            echo "<a href='account/account.php'>"."account</a>";
+
                            }
-                           
-                          echo"</a>
-                          <a href='#'>Link 2</a>
-                          <a href='account/logout.php'>logout</a>
+                           echo"</a>
+                           <a href='account/logout.php'>logout</a>
                         </div>
                       </div>";
                     }?>
@@ -98,56 +135,27 @@ if(isset($_GET['error'])){
         <p>Articles written by the faculty in a simplified way directed to students of primary studies</p>
         
         <div class="row">
+          <?php foreach($selectarticles as $article){?>
 
-            <div class="articles-col">
-               <div class="articles-text">
-                <h3>How explainable artificial intelligence can help humans innovate</h3>
-                <p>
-                    AI algorithms can solve hard problems and learn incredible tasks,
-                     but they can't explain how they do these things.
-                     If researchers can build explainable AI, it could lead to a flood of new knowledge.
-                     AI algorithms can solve hard problems and learn incredible tasks,
-                     but they can't explain how they do these things.
-                     If researchers can build explainable AI, it could lead to a flood of new knowledge.
-                </p>
-               </div>
-                <div class="articles-info">
-                    <span>writen by Ahmed kreem 2020/4/5</span>
-                    <a href="read" class="hero-btn read-btn">read</a>
-                   </div>
-            </div>
-            <div class="articles-col">
-                <div class="articles-text">
-                 <h3>How explainable artificial intelligence can help humans innovate</h3>
-                 <p>
-                     AI algorithms can solve hard problems and learn incredible tasks,
-                      but they can't explain how they do these things.
-                      If researchers can build explainable AI, it could lead to a flood of new knowledge.
-                 </p>
-                </div>
-                 <div class="articles-info">
-                     <span>writen by Ahmed kreem 2020/4/5</span>
-                     <a href="read" class="hero-btn read-btn">read</a>
+                    <div class="articles-col">
+                            <div class="articles-text">
+                                   <h3><?php echo $article['title']?></h3>
+                                    <p><?php echo substr($article['content'],0,160)."  .......";?>
+                                     </p>
+                            </div>
+                             <div class="articles-info">
+                                   <span><?php echo $article['author']." ".$article['date'];?></span>
+                                    <a href="read.php?articleid=<?php echo $article['id'];?>" class="hero-btn read-btn">read</a>
+                            </div>
                     </div>
-             </div>
-             <div class="articles-col">
-                <div class="articles-text">
-                 <h3>How explainable artificial intelligence can help humans innovate</h3>
-                 <p>
-                     AI algorithms can solve hard problems and learn incredible tasks,
-                      but they can't explain how they do these things.
-                      If researchers can build explainable AI, it could lead to a flood of new knowledge.
-                 </p>
-                </div>
-                 <div class="articles-info">
-                     <span>writen by Ahmed kreem 2020/4/5</span>
-                     <a href="read" class="hero-btn read-btn">read</a>
-                    </div>
-             </div>
+
+
+        <?php   }?>
+           
            
         </div > 
         <!-- row --> 
-        <h3><a href="" class="hero-btn read-btn">show more</a></h3>
+        <h3><a href="articles.php?article=1" class="hero-btn read-btn">show more</a></h3>
     
     </section>  <!--articles-->
 
@@ -157,32 +165,21 @@ if(isset($_GET['error'])){
         <p>Wikipedia is a free online encyclopedia, created and edited by volunteers around the world </p>
         
         <div class="row">
+          <?php 
+             foreach($selectnews as $news){?>
             <div class="news-col">
-                <img src="asset/eduford_img/london.png" >
+                <img src="asset/eduford_img/<?php echo $news['image'];?>" >
                 <div class="layer">
-                    <h3><a href=" " class="hero-btn read-btn news-btn">read</a></h3>
+                    <h3><a href="read.php?newsid=<?php echo $news['id'];?>" class="hero-btn read-btn news-btn">read</a></h3>
                 </div>
-                <p>The launch of the activities of the third international scientific conference of the department</p>
+                <p><?php echo substr($news['content'],0,80)."  .....";?></p>
             </div>
-            <div class="news-col">
-                <img src="asset/eduford_img/newyork.png" >
-                <div class="layer">
-                    <h3><a href=" " class="hero-btn read-btn news-btn">read</a></h3>
-                </div>
-                <p>A training course for teachers and graduate students in the Department of Computer Science</p>
-            </div>
-            <div class="news-col">
-                <img src="asset/eduford_img/washington.png" >
-                <div class="layer">
-                    <h3><a href=" " class="hero-btn read-btn news-btn">read</a></h3>
-                    
-                </div>
-                <p>A training course for teachers and graduate students in the Department of Computer Science</p>
-
-            </div>
+            <?php }?>
         </div>  <!--row-->
 
+
     </section><!--news--> 
+    <h3><a href="articles.php?news=1" class="hero-btn read-btn">show more</a></h3>
 
     <!--services-->
     <section class="services">
@@ -276,3 +273,9 @@ if(isset($_GET['error'])){
     }
 </script>
 </html> 
+
+<style>
+.dropdown{
+    color: while;
+}
+</style>

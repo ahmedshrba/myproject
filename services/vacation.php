@@ -9,20 +9,42 @@ include('../include/connect.php');
          $first_name=$_SESSION['first_name'];
          $last_name=$_SESSION['last_name'];
          $job=$_SESSION['job'];
+         $email=$_SESSION['email'];
          $exam=$_POST['exam'];
          $vacsick=$_POST['vacsick'];
          $date =$_POST['date'];
          $duration=$_POST['duration'];
          //named of inputs
 
-         $vacation_sql="INSERT INTO vacation (first_name,last_name,department,job,exam,illness,duration,date)
+         $vacation_sql="INSERT INTO vacation (first_name,last_name,department,job,exam,illness,duration,date,email)
          
-         VALUES('$first_name','$last_name','$department','$job','$exam','$vacsick','$duration','$date')";
+         VALUES('$first_name','$last_name','$department','$job','$exam','$vacsick','$duration','$date','$email')";
          $vacation=$db->prepare($vacation_sql);
          $vacation->execute();
+      if($job!='Dean'){
+        $email_to_department="SELECT *FROM accounts WHERE department='$department' and job_title='SADean' or job_title='HOdepartment' or job_title='AHDepartment'";
+        $email_to_department=$db->prepare($email_to_department);
+        $email_to_department->execute();
+        $email_to_department=$email_to_department->fetchAll();
+        foreach($email_to_department as $email){
+            $message="hellow ". $email['first_name']." new vacation ";
+            mail($email['email'],"vacation",$message,"From: a@gmail.com");
+
+        }
          
         header('location:../index.php');
       }
+      else{
+        
+        $email_to_department="SELECT *FROM accounts WHERE department='$department' and job_title='SADean'";
+        $email_to_department=$db->prepare($email_to_department);
+        $email_to_department->execute();
+        $email_to_department=$email_to_department->fetch(PDO::FETCH_ASSOC);
+        $message="hellow ". $email_to_department['first_name']." iam the dean i have vacation tomoro ";
+        mail($email_to_department['email'],"vacation",$message,"From: a@gmail.com");
+
+      }
+    }
 
 
  ?>

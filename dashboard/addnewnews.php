@@ -54,8 +54,8 @@ session_start();
             $title=trim($title);
             $news=trim($news);
             
-           $title=preg_replace('/[^A-Za-z0-9\-]/', '', $title);
-           $news=preg_replace('/[^A-Za-z0-9\-]/', '', $news);
+          //  $title=preg_replace('/[^A-Za-z0-9\-]/', '', $title);
+          //  $news=preg_replace('/[^A-Za-z0-9\-]/', '', $news);
     
     
            $title=strip_tags($title);       

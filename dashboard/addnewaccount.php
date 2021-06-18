@@ -1,7 +1,7 @@
 <?php
 
 require('../include/connect.php');
-
+session_start();
 $error="";//message errors 
 
 if(isset($_POST['submit'])){
@@ -104,9 +104,8 @@ if(isset($_POST['submit'])){
                 
                 $insert=$db->prepare($insert);
                 $insert->execute();
-
-
-                header('location:../dashboard/dashboard.php');
+            
+                header('location:../dashboard/addnewaccount.php');
 
 
              } // end of insert blok
