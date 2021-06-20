@@ -175,7 +175,7 @@ include('../include/connect.php');
 
 <style>
 body{
-    background-color: #800080;
+    background-color: #E1DADA;
 }
 label{
     text-align: center;
@@ -187,8 +187,8 @@ label{
     margin: 0 auto;
       
 }
-form{color: #FFFFFF	;
-    background-color: #FF00FF	;
+form{color: #2C2B2B	;
+    background-color: 8E8989	;
     padding: 50PX;
     border-radius:5% ;
    margin-left: 50%;
@@ -207,7 +207,7 @@ form{color: #FFFFFF	;
     float: left;
 }
 .btn{
-    background-color: #800080;
+    background-color: #6D5F5F;
     color:white;
     font-size: 20px;
 }

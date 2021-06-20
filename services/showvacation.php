@@ -61,7 +61,7 @@ include('../include/connect.php');
           header('location:../index.php?error=you cant see this page');
        }
        ?>
-       <table border="2">
+       <table >
            <tr>
              <th>Name</th>
              <th>Department</th>
@@ -94,7 +94,7 @@ include('../include/connect.php');
           else{$illness="no";}
           ?>
 
-          <tr>
+          <tr style="outline: thin solid">
              <td><?php echo $row['first_name']." ".$row['last_name'];?></td>
              <td><?php echo $row['department'];?></td>
              <td><?php  echo $exam;?></td>
@@ -166,26 +166,35 @@ include('../include/connect.php');
 
 <style>
    body{
-      background-color: #dddddd;
+      background-color: #E1DADA;
    }
  table{
     background-color: #c0c0c0;
-    
+    width: 80%;
     margin: 0 auto;
  }
+table tr td{
+   background-color: 8E8989;
+   border: none;
+}
  table tr th{
     background-color: #aaaaaa;
     color: #001f3f;
  }
  table tr th ,td{
     text-align: center;
-    font-size: 20px;
+    font-size: 16px;
+ }
+ table tr td {
+
+   
+
  }
 #accept-btn{
    
    text-decoration: none;
    background-color: green;
-   padding: 10px;
+   padding: 5px;
    color: white;
    border-radius: 50%;
 
@@ -198,7 +207,7 @@ include('../include/connect.php');
    
    text-decoration: none;
    background-color: red;
-   padding: 10px;
+   padding: 5px;
    color: white;
    border-radius: 50%;
 
@@ -210,22 +219,28 @@ include('../include/connect.php');
 #accept{
    text-decoration: none;
    background-color: white;
-   padding: 10px;
+   padding: 5px;
    color: green;
    border-radius: 50%;
 }
 #refuse{
    text-decoration: none;
    background-color: white;
-   padding: 10px;
+   padding: 5px;
    color: red;
    border-radius: 50%;
 }
 
-@media(max-width:700px){
+@media(max-width:700){
    table{
-      display: flex;
-      flex-direction: column;
-   }
+   
+    width: 100%;
+    margin:0;
+    padding: 0;
+ }
+table tr td{
+   background-color: 8E8989;
+   border: none;
 }
+ }
 </style>

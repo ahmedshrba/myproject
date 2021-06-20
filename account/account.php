@@ -51,6 +51,8 @@ if(isset($_POST['submit'])){
         ?>
         
         <form action="account.php" method="POST" class="checkform">
+        <div class='error' > <?php if(!empty($error))echo $error?></div>
+
          <h3 style="text-align:center;color:#000080">check you email </h3>
         <div class="form-group">
         <input type="number" name="number" class="form-control checknumber" placeholder="Enter the number you received in the email">
@@ -78,7 +80,24 @@ if(isset($_POST['submit'])){
        header('location:logout.php');
 
     }
-}    
+    else{
+        $error="the number not correct try again";?>
+          
+          <form action="account.php" method="POST" class="checkform">
+        <div class='error' > <?php if(!empty($error))echo $error?></div>
+
+         <h3 style="text-align:center;color:#000080">check you email </h3>
+        <div class="form-group">
+        <input type="number" name="number" class="form-control checknumber" placeholder="Enter the number you received in the email">
+        <input type="submit" name="submitcheck" value="check" class="form-control checkinput input" >
+        </div>
+        </form>
+        <?php
+       $style="display:none";
+        }
+        
+    }
+    
 ?>
 
 
@@ -148,20 +167,20 @@ if(isset($_POST['submit'])){
 
 <style>
 body{
-    background-color: rgb(225, 225, 225);
+    background-color:#E1DADA;
 }
   form{
       width: 60%;
       margin: 0 auto;
       margin-top: 10%;
       min-height: 60vh;
-      background-color:#C0C0C0;
+      background-color:8E8989;
       display: flex;
       flex-direction: column;
       justify-content: center;
       box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px, rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset;  }
 .control-label,.form-control {
-       color:#000080	;
+       color:#2C2B2B	;
       margin-top: 20px;
   }
   .input{
@@ -186,8 +205,9 @@ body{
 }
 .checkform{
     width: 50%;
-    background-color:#C0C0C0;
+    background-color:8E8989;
     display: flex;
+    color:#2C2B2B ;
     flex-direction: column;    
 }
 .checkinput{
@@ -198,5 +218,17 @@ body{
 .checknumber{
     width: 50%;
     margin: 0 auto;
+    margin-bottom: 3%;
+}
+@media (max-width:700px){
+    .checkform{
+        width: 80%;
+    }
+    .checkinput{
+  width: 50%;
+
+  margin: 0 auto;
+
+}
 }
 </style>
